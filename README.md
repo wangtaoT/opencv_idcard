@@ -1,2 +1,2 @@
 # opencv_idcard
-Android jni 身份证识别
+Android opencv jni 身份证识别
