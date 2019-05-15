@@ -36,8 +36,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void rt(View view) {
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.idcard);
-        Bitmap idNumbar = findIdNumber(bitmap, Bitmap.Config.ARGB_8888);
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.id_card1);
+        Bitmap template = BitmapFactory.decodeResource(getResources(), R.drawable.template);
+        Bitmap idNumbar = findIdNumber(bitmap, template, Bitmap.Config.ARGB_8888);
         bitmap.recycle();
         if (idNumbar != null) {
             img_1.setImageBitmap(idNumbar);
@@ -46,5 +47,5 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public native Bitmap findIdNumber(Bitmap bitmap, Bitmap.Config argb8888);
+    public native Bitmap findIdNumber(Bitmap bitmap, Bitmap tpl, Bitmap.Config argb8888);
 }
