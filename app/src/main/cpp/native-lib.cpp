@@ -52,6 +52,8 @@ Java_com_wangtao_opencv_1idcard_MainActivity_findIdNumber(JNIEnv *env, jobject i
     cvtColor(img_src, img_gray, COLOR_BGRA2GRAY);
     //二值化
     threshold(img_gray, img_threshold, 100, 255, THRESH_BINARY);
+    //取反
+    img_threshold = ~img_threshold;
     //高斯过滤
     GaussianBlur(img_threshold, img_gaussian, Size(5, 5), 0);
     //边缘检测
@@ -101,13 +103,6 @@ Java_com_wangtao_opencv_1idcard_MainActivity_findIdNumber(JNIEnv *env, jobject i
     //创建输出图像，输出图像的宽度 = 被查找图像的宽度 - 模版图像的宽度 + 1
     Mat match(rows, cols, CV_32F);
     //Mat match;
-//        TM_SQDIFF 平方差匹配法
-//        TM_CCORR 相关匹配法
-//        TM_CCOEFF 相关系数匹配法
-//        TM_SQDIFF_NORMED
-//        TM_CCORR_NORMED
-//        TM_CCOEFF_NORMED
-    // 对于方法 SQDIFF 和 SQDIFF_NORMED, 越小的数值代表更高的匹配结果. 而对于其他方法, 数值越大匹配越好
     matchTemplate(img_idCard, img_tpl, match, TM_CCORR_NORMED);
     //归一化
     normalize(match, match, 0, 1, NORM_MINMAX, -1);
